@@ -5,8 +5,6 @@ const crypto = require("crypto");
 const { Octokit, App } = require("octokit");
 const { resolve } = require("path");
 const { contentType } = require("express/lib/response");
-const { useCssVars } = require("vue");
-const { isBigInt64Array } = require("util/types");
 
 function envIntElse(key, def) {
   const env = process.env[key];
