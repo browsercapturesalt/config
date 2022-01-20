@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/@browsercapturesalt%2Fconfig.svg)](https://badge.fury.io/js/@browsercapturesalt%2Fconfig)
+
 # config
 
 Edit your env var config, encrypt and upload it to a git repo.
