@@ -11,7 +11,7 @@
     "prettier": "^2.5.1",
     "vue": "^3.2.27"
   },
-  "version": "1.0.10",
+  "version": "1.0.11",
   "name": "@browsercapturesalt/config",
   "description": "Edit your env var config, encrypt and upload it to a git repo. Get your config decrypted from the git repo and work export it to env vars.",
   "keywords": [
