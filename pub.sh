@@ -1,2 +1,3 @@
 . auth.sh
-npm publish --access=public
+
+npm publish --access=publicW
