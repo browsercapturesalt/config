@@ -162,11 +162,15 @@ function getGitContentDec(path) {
   });
 }
 
-function getGitContentJsonDec(path) {
+function getGitContentJsonDec(path, def) {
   return new Promise((resolve) => {
     getGitContentDec(path).then((result) => {
       if (result.error) {
-        resolve(result);
+        if (def) {
+          resolve(def);
+        } else {
+          resolve(result);
+        }
       } else {
         result.content = JSON.parse(result.content.toString());
         resolve(result);

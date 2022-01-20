@@ -1,14 +1,61 @@
 <script src="/vue.js"></script>
 <script src="/utils.js"></script>
 
-<div id="app">{{ welcome }}</div>
+<div id="app">
+  {{ welcome }}
+  <hr />
+  <button @click="setadminpass">Set Admin Pass</button>
+  <hr />
+  <button @click="addkey">Add Key</button>
+  <button @click="upload">Upload</button>
+  <hr />
+  <table>
+    <tr v-for="(value, key) in config">
+      <td>{{ key }}</td>
+      <td>
+        <input @input="valuechanged($event, key)" type="text" :value="value" />
+      </td>
+      <td>
+        <button @click="del(key)">Del</button>
+      </td>
+    </tr>
+  </table>
+</div>
 
 <script>
   Vue.createApp({
+    methods: {
+      del(key) {
+        delete this.config[key];
+      },
+      valuechanged(ev, key) {
+        this.config[key] = ev.target.value;
+      },
+      upload() {
+        post("setconfig", { config: this.config }).then((result) => {});
+      },
+      addkey() {
+        const key = window.prompt("Key");
+
+        if (key) {
+          this.config[key] = "";
+        }
+      },
+      setadminpass() {
+        const pass = window.prompt("Admin Pass");
+        localStorage.setItem("ADMIN_PASS", pass);
+      },
+    },
     data() {
       return {
         welcome: "Welcome to Express Min !",
+        config: {},
       };
+    },
+    mounted() {
+      post("getconfig").then((result) => {
+        this.config = result.content;
+      });
     },
   }).mount("#app");
 

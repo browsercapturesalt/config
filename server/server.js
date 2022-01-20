@@ -10,6 +10,18 @@ const app = express();
 
 const api = express.Router();
 
+api.use(express.json());
+
+api.use((req, res, next) => {
+  req.isAdmin = false;
+  if (req.body) {
+    if (req.body.ADMIN_PASS === process.env.ADMIN_PASS) {
+      req.isAdmin = true;
+    }
+  }
+  next();
+});
+
 app.use(API_BASE_URL, api);
 
 const SERVER_STARTED_AT = Date.now();
@@ -17,6 +29,23 @@ const INDEX_TITLE = "Express Min";
 
 api.get("/init", (req, res) => {
   utils.sendJson(res, { SERVER_STARTED_AT, INDEX_TITLE });
+});
+
+api.post("/getconfig", (req, res) => {
+  utils.getGitContentJsonDec("config", {}).then((result) => {
+    res.json(result);
+  });
+});
+
+api.post("/setconfig", (req, res) => {
+  const config = req.body.config;
+  if (req.isAdmin) {
+    utils.upsertGitContentJsonEnc("config", config).then((result) => {
+      res.json(result);
+    });
+  } else {
+    res.json({ error: "Not Authenticated" });
+  }
 });
 
 app.get("/", (req, res) => {

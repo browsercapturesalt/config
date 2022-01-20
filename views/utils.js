@@ -5,6 +5,7 @@ function api(endpoint, method, payloadOpt) {
   const url = `${API_BASE_URL}/${endpoint}`;
   payload.ADMIN_PASS = localStorage.getItem("ADMIN_PASS");
   const headers = {
+    "Content-Type": "application/json",
     Accept: "application/json",
   };
   if (endpoint !== "init")
@@ -34,6 +35,10 @@ function api(endpoint, method, payloadOpt) {
 
 function get(endpoint, payload) {
   return api(endpoint, "GET", payload);
+}
+
+function post(endpoint, payload) {
+  return api(endpoint, "POST", payload);
 }
 
 function hotReload() {
