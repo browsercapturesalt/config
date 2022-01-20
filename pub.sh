@@ -1,3 +1,5 @@
 . auth.sh
 
-npm publish --access=publicW
+npm publish --access=public
+
+. p.sh "$*"
