@@ -49,7 +49,7 @@ function hotReload() {
     setInterval(() => {
       get("init").then((json) => {
         if (json.SERVER_STARTED_AT !== serverStartedAt) {
-          document.location.reload();
+          setTimeout(() => document.location.reload(), 3000);
         }
       });
     }, 1000);

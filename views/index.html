@@ -1,3 +1,23 @@
+<style>
+  .keys {
+    font-family: monospace;
+    border-collapse: collapse;
+  }
+  .keys td {
+    padding: 3px;
+    border: solid 1px #777;
+  }
+  .keys .key {
+    font-size: 18px;
+    font-weight: bold;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .keys .value {
+    width: 600px;
+  }
+</style>
+
 <script src="/vue.js"></script>
 <script src="/utils.js"></script>
 
@@ -6,17 +26,27 @@
   <hr />
   <button @click="setadminpass">Set Admin Pass</button>
   <hr />
-  <button @click="addkey">Add Key</button>
-  <button @click="upload">Upload</button>
+  <button @click="addkey" style="background-color: #afa">Add Key</button>
+  <button @click="upload" style="background-color: #ffa; margin-left: 10px">
+    Upload
+  </button>
   <hr />
-  <table>
+  <textarea @input="importinput" style="width: 600px; height: 100px">
+  </textarea>
+  <hr />
+  <table class="keys">
     <tr v-for="(value, key) in config">
-      <td>{{ key }}</td>
+      <td class="key">{{ key }}</td>
       <td>
-        <input @input="valuechanged($event, key)" type="text" :value="value" />
+        <input
+          class="value"
+          @input="valuechanged($event, key)"
+          type="text"
+          :value="value"
+        />
       </td>
       <td>
-        <button @click="del(key)">Del</button>
+        <button @click="del(key)" style="background-color: #faa">Del</button>
       </td>
     </tr>
   </table>
@@ -25,6 +55,16 @@
 <script>
   Vue.createApp({
     methods: {
+      importinput(ev) {
+        ev.target.value.split("\n").forEach((line) => {
+          const splitIndex = line.split("").findIndex((c) => c === "=");
+          if (splitIndex >= 0) {
+            this.config[line.substring(0, splitIndex)] = line.substring(
+              splitIndex + 1
+            );
+          }
+        });
+      },
       del(key) {
         delete this.config[key];
       },
@@ -35,7 +75,9 @@
         post("setconfig", { config: this.config }).then((result) => {});
       },
       addkey() {
-        const key = window.prompt("Key");
+        const keyInp = window.prompt("Key");
+
+        const key = keyInp.toUpperCase().replace(/\s/g, "_");
 
         if (key) {
           this.config[key] = "";
