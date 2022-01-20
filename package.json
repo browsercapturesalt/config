@@ -9,5 +9,9 @@
     "octokit": "^1.7.1",
     "prettier": "^2.5.1",
     "vue": "^3.2.27"
-  }
+  },
+  "version": "1.0.0",
+  "name": "@browsercapturesalt/config",
+  "private": false,
+  "main": "env.js"
 }
