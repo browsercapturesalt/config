@@ -1,7 +1,8 @@
 {
   "scripts": {
     "pretty": "prettier -w server/server.js  server/utils.js views/index.html views/utils.js",
-    "serve": "nodemon --exec bash startserver.sh"
+    "serve": "nodemon --exec bash startserver.sh",
+    "env": "node node_modules/@browsercapturesalt/config"
   },
   "dependencies": {
     "express": "^4.17.2",
@@ -10,8 +11,14 @@
     "prettier": "^2.5.1",
     "vue": "^3.2.27"
   },
-  "version": "1.0.0",
+  "version": "1.0.1",
   "name": "@browsercapturesalt/config",
   "private": false,
-  "main": "env.js"
+  "main": "env.js",
+  "bin": {
+    "env": "./bin/env"
+  },
+  "devDependencies": {
+    "@browsercapturesalt/config": "^1.0.0"
+  }
 }
