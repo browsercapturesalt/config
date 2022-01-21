@@ -25,24 +25,29 @@
   {{ welcome }}
   <hr />
   <button @click="setadminpass">Set Admin Pass</button>
+  <button @click="getgp" style="margin-left: 10px">GP</button>
   <hr />
   <button @click="addkey" style="background-color: #afa">Add Key</button>
   <button @click="upload" style="background-color: #ffa; margin-left: 10px">
     Upload
   </button>
   <hr />
-  <textarea @input="importinput" style="width: 600px; height: 100px">
+  <textarea
+    ref="inpta"
+    @input="importinput"
+    style="width: 600px; height: 100px"
+  >
   </textarea>
   <hr />
   <table class="keys">
-    <tr v-for="(value, key) in config">
+    <tr v-for="key in sortedKeys">
       <td class="key">{{ key }}</td>
       <td>
         <input
           class="value"
           @input="valuechanged($event, key)"
           type="text"
-          :value="value"
+          :value="config[key]"
         />
       </td>
       <td>
@@ -54,7 +59,23 @@
 
 <script>
   Vue.createApp({
+    computed: {
+      sortedKeys() {
+        return Object.keys(this.config).sort((a, b) => a.localeCompare(b));
+      },
+    },
     methods: {
+      getgp() {
+        post("getgp", {}).then((result) => {
+          window.alert(result);
+          for (let line of result.replace(/\r/g, "").split("\n")) {
+            const m = line.match(/([^=]+)=(.+)/);
+            if (m) {
+              this.config[m[1]] = m[2];
+            }
+          }
+        });
+      },
       importinput(ev) {
         ev.target.value.split("\n").forEach((line) => {
           const splitIndex = line.split("").findIndex((c) => c === "=");
@@ -72,7 +93,9 @@
         this.config[key] = ev.target.value;
       },
       upload() {
-        post("setconfig", { config: this.config }).then((result) => {});
+        post("setconfig", { config: this.config }).then((result) => {
+          window.alert(JSON.stringify(result));
+        });
       },
       addkey() {
         const keyInp = window.prompt("Key");

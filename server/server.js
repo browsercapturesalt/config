@@ -32,9 +32,23 @@ api.get("/init", (req, res) => {
 });
 
 api.post("/getconfig", (req, res) => {
-  utils.getGitContentJsonDec("config", {}).then((result) => {
-    res.json(result);
-  });
+  if (req.isAdmin) {
+    utils.getGitContentJsonDec("config", {}).then((result) => {
+      res.json(result);
+    });
+  } else {
+    res.json({});
+  }
+});
+
+api.post("/getgp", (req, res) => {
+  if (req.isAdmin) {
+    utils.getOutputOf("gp env").then((result) => {
+      res.json(result);
+    });
+  } else {
+    res.json({});
+  }
 });
 
 api.post("/setconfig", (req, res) => {

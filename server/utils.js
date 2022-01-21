@@ -4,7 +4,15 @@ const crypto = require("crypto");
 
 const { Octokit, App } = require("octokit");
 const { resolve } = require("path");
-const { contentType } = require("express/lib/response");
+const { exec } = require("child_process");
+
+function getOutputOf(command) {
+  return new Promise((resolve) => {
+    exec(command, (error, stdout, stderr) => {
+      resolve(stdout);
+    });
+  });
+}
 
 function envIntElse(key, def) {
   const env = process.env[key];
@@ -228,4 +236,5 @@ module.exports = {
   decrypt,
   createRepo,
   deleteRepo,
+  getOutputOf,
 };
