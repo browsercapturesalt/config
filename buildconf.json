@@ -1,0 +1,58 @@
+[
+    {
+        "app": "appvueexpress",
+        "url": "https://github.com/browsercaptures/vueexpress/blob/main/repo.tar.gz?raw=true"
+    },
+    {
+        "app": "apidummyapp",
+        "url": "https://github.com/browsercaptures/herokutargzbuild/blob/master/repo.tar.gz?raw=true"
+    },
+    {
+        "app": "apidummyapp2",
+        "url": "https://github.com/browsercaptures/herokutargzbuild/blob/master/repo.tar.gz?raw=true"
+    },
+    {
+        "app": "easychess2",
+        "url": "https://github.com/browsercaptures/easychess/blob/master/repo.tar.gz?raw=true"
+    },
+    {
+        "app": "easychess3",
+        "url": "https://github.com/browsercaptures/easychess/blob/master/repo.tar.gz?raw=true"
+    },
+    {
+        "app": "easychessreserve",
+        "url": "https://github.com/browsercaptures/easychess/blob/master/repo.tar.gz?raw=true"
+    },
+    {
+        "app": "easychess",
+        "url": "https://github.com/browsercaptures/easychess/blob/master/repo.tar.gz?raw=true"
+    },
+    {
+        "app": "hypereasy",
+        "url": "https://github.com/browsercaptures/scalachess/blob/js/repo.tar.gz?raw=true"
+    },
+    {
+        "app": "hypereasy2",
+        "url": "https://github.com/browsercaptures/scalachess/blob/js/repo.tar.gz?raw=true"
+    },
+    {
+        "app": "amgilp",
+        "url": "https://github.com/hyperbotauthor/amgilp/blob/master/repo.tar.gz?raw=true"
+    },
+    {
+        "app": "amgilp2",
+        "url": "https://github.com/hyperbotauthor/amgilp/blob/master/repo.tar.gz?raw=true"
+    },
+    {
+        "app": "apinomadicapp",
+        "url": "https://github.com/browsercapturesalt/blobs/blob/main/apptargz/apinomadicapp.tar.gz?raw=true"
+    },
+    {
+        "app": "apinomadicapp2",
+        "url": "https://github.com/browsercapturesalt/blobs/blob/main/apptargz/apinomadicapp.tar.gz?raw=true"
+    },
+    {
+        "app": "editconfig",
+        "url": "https://github.com/browsercapturesalt/blobs/blob/main/apptargz/config.tar.gz?raw=true"
+    }
+]
