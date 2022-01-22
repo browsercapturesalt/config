@@ -115,6 +115,7 @@
       setadminpass() {
         const pass = window.prompt("Admin Pass");
         localStorage.setItem("ADMIN_PASS", pass);
+        document.location.reload();
       },
     },
     data() {
@@ -125,7 +126,7 @@
     },
     mounted() {
       post("getconfig").then((result) => {
-        this.config = result.content;
+        this.config = result.content || {};
       });
     },
   }).mount("#app");
